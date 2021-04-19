@@ -10,7 +10,7 @@ import {
   } from '@material-ui/core';
 import Logo from './Logo'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {login} from './Redux/actions/logActions'
 
 const useStyles = makeStyles((theme) => ({
@@ -79,11 +79,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const login = useSelector(state => state.log)
   const dispatch = useDispatch()
 
   const logoutUser =()=>{
       localStorage.clear()
-      dispatch(login())
+      window.location.reload()
   }
  
 
@@ -94,11 +95,16 @@ export default function PrimarySearchAppBar() {
           <Logo/>
           <Box flexGrow={1} />
           <Hidden mdDown>
-          <Tooltip title="Logout">
-            <IconButton color="black" onClick={() => logoutUser()}>
-            <ExitToAppIcon />
-            </IconButton>
-          </Tooltip>
+              {
+                  login ? (
+                    <Tooltip title="Logout">
+                    <IconButton color="black" onClick={() => logoutUser()}>
+                    <ExitToAppIcon />
+                    </IconButton>
+                  </Tooltip>
+                  ) : null
+              }
+          
           </Hidden>
         </Toolbar>
 

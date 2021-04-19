@@ -50,6 +50,8 @@ const Dashboard =(props)=>{
             return ele._id === id
         })
         result[0].prrofileStatus = 'shortlisted'
+        result[0].updated_At = new Date()
+
         axios.put(`http://192.168.3.45:3056/api/profiles/${id}`,result[0])
             .then((response)=>{
                 getProfiles()
@@ -65,6 +67,7 @@ const Dashboard =(props)=>{
             return ele._id === id
         })
         result[0].prrofileStatus = 'rejected'
+        result[0].updated_At = new Date()
         axios.put(`http://192.168.3.45:3056/api/profiles/${id}`,result[0])
             .then((response)=>{
                 getProfiles()
@@ -127,7 +130,7 @@ const Dashboard =(props)=>{
                                 <td>{profile.firstName}</td>
                                 <td>{profile.lastName}</td>
                                 <td>{profile.role}</td>
-                                <td>{profile.created_At}</td>
+                                <td>{profile.created_At.slice(0,10)}</td>
                                 <td><button type="button" class="btn btn-primary" key={profile._id} onClick={()=>{
                                         handleDetails(profile._id)
                                 }}>View Details</button></td>
