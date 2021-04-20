@@ -199,7 +199,7 @@ const Dashboard =(props)=>{
                     <p>Current CTC : {candidate.ctc}</p>
                     <p>Available for Immediate Joining : {candidate.joining}</p>
                     <p>Profile Status : {candidate.prrofileStatus}</p> 
-                    <p>path : <a href={url + candidate.resume} target="_blank" rel="noopener noreferrer">show</a></p>
+                    <p>Resume : <a href={url + candidate.resume} target="_blank" rel="noopener noreferrer">show</a></p>
                     <p>{link}</p>
                 </Modal.Body>
                 <Modal.Footer>
