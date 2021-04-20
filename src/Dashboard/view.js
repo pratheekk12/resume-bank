@@ -5,6 +5,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {Modal } from 'react-bootstrap'
+import { Link ,useHistory,Redirect} from 'react-router-dom'
 
 toast.configure()
 
@@ -12,8 +13,11 @@ const Dashboard =(props)=>{
     const [profiles,setProfiles] = useState([])
     const [candidate,setCandidate] = useState("")
     const [show,setShow] =useState(false)
-   
+    const [link,setLink] = useState()
+    
+    const history = useHistory()
 
+    var url = "http://192.168.3.45:3056/resumes/"
     //get all profiles
     const getProfiles =()=>{
         axios.get('http://192.168.3.45:3056/api/profiles')
@@ -79,6 +83,7 @@ const Dashboard =(props)=>{
     }
 
     const handleClose=()=>{
+        setLink()
         setShow(false)
     }
 
@@ -86,8 +91,28 @@ const Dashboard =(props)=>{
         getProfiles()
     },[])
 
+    
 
-
+    // const showresume=(id)=>{
+    //     axios.get(`http://localhost:3056/api/profiles_resumes/${id}`)
+    //     .then((response)=>{
+    //         // setCandidate(response.data)
+    //         // setShow(true)
+    //         // console.log(response.data)
+    //         // url = response.data
+    //         // console.log(url,"url")
+    //         console.log(response.data)
+    //         var i = "http://localhost:3056"+response.data
+    //         setLink(i)
+           
+    //         //history.push(response.data)
+           
+    //     })
+    //     .catch((error)=>{
+    //         console.log(error)
+    //     })
+        
+    // }
 
     return(<div>
        
@@ -174,6 +199,8 @@ const Dashboard =(props)=>{
                     <p>Current CTC : {candidate.ctc}</p>
                     <p>Available for Immediate Joining : {candidate.joining}</p>
                     <p>Profile Status : {candidate.prrofileStatus}</p> 
+                    <p>path : <a href={url + candidate.resume} target="_blank" rel="noopener noreferrer">show</a></p>
+                    <p>{link}</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="button" class="btn btn-primary" onClick={handleClose} >Close</button>
@@ -183,3 +210,9 @@ const Dashboard =(props)=>{
 }
 
 export default Dashboard
+
+{/* <button onClick={()=>{
+                        var l = "/home/pratheekk/Desktop/Apr-20/updated/hr-resume-bank-be/resumes/"+ candidate.resume
+                        showresume(l)
+                        
+                    }}>view resume</button> */}
