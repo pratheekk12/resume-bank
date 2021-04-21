@@ -10,8 +10,8 @@ import {
   } from '@material-ui/core';
 import Logo from './Logo'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {useDispatch,useSelector} from 'react-redux'
-import {login} from './Redux/actions/logActions'
+import {useSelector} from 'react-redux'
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const login = useSelector(state => state.log)
-  const dispatch = useDispatch()
+  
 
   const logoutUser =()=>{
       localStorage.clear()
