@@ -166,9 +166,16 @@ const Dashboard =(props)=>{
 
 
     return(<div>
+         <Header />
         <Grid container spacing={3} direction="row">
         <Grid item xs={12} sm={12}>
-        <Header />
+        
+        </Grid>
+        <Grid item xs={12} sm={12}>
+        
+        </Grid>
+        <Grid item xs={12} sm={12}>
+        
         </Grid>
         <Grid item xs={5} sm={5}></Grid>
         <Grid item xs={2} sm={2}>
@@ -179,13 +186,14 @@ const Dashboard =(props)=>{
                 }
               />
                 <CardContent>
+                    {/* Total Profiles <br/><br/> */}
                     {profiles.length}
                 </CardContent>
             </Card>
         </Grid>
         <Grid item xs={5} sm={5}></Grid>
         <Grid item xs={3} sm={3}>
-        <TextField id="outlined-basic" label="search by name" variant="outlined" size="small" value={search} onChange={handleSearch}/>&nbsp;<Button variant="contained" color="primary" onClick={searchcandidate}><SearchIcon/></Button>&nbsp;<Button variant="contained"  onClick={()=>{setprofiles1(profiles) ;setSearch("")}}><RotateLeftIcon/></Button>
+        <TextField id="outlined-basic" label="search by first name" variant="outlined" size="small" value={search} onChange={handleSearch}/>&nbsp;<Button variant="contained" color="primary" onClick={searchcandidate}><SearchIcon/></Button>&nbsp;<Button variant="contained"  onClick={()=>{setprofiles1(profiles) ;setSearch("")}}><RotateLeftIcon/></Button>
         </Grid>
         <Grid item xs={5} sm={5}>
                 
@@ -239,17 +247,17 @@ const Dashboard =(props)=>{
                                 <td>{profile.role}</td>
                                 <td>{profile.created_At.slice(0,10)}</td>
                                 {
-                                        profile.prrofileStatus === "Applied" && (<td><button type="button" class="btn btn-success" onClick={()=>{
+                                        profile.prrofileStatus === "Applied" && (<td ><button type="button" class="btn btn-success" onClick={()=>{
                                             handleshortlisted(profile._id)
                                         }}>Shortlist</button>&nbsp;<button type="button" class="btn btn-danger" onClick={()=>{
                                             handlerejected(profile._id)
                                         }}>Reject</button></td>)
                                     }
                                 {
-                                            profile.prrofileStatus === "rejected" && (<td><button type="button" class="btn btn-danger" disabled="true">rejected</button></td>)
+                                            profile.prrofileStatus === "rejected" && (<td ><button type="button" class="btn btn-danger" disabled="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rejected&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></td>)
                                     }
                                     {
-                                            profile.prrofileStatus === "shortlisted" && (<td><button type="button" class="btn btn-primary" disabled="true">shortlisted</button></td>)
+                                            profile.prrofileStatus === "shortlisted" && (<td ><button type="button" class="btn btn-primary" disabled="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shortlisted&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></td>)
                                     }   
                                 <td>{profile.updated_At.slice(0,10)}</td>
                             </tr>)
@@ -261,9 +269,12 @@ const Dashboard =(props)=>{
         </Grid>
         <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{candidate.firstName} {candidate.lastName}</Modal.Title>
+                    <br/>
+                    <br/>
+                    <Modal.Title></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <h3>{candidate.firstName} {candidate.lastName}</h3><br/>
                     <p>First Name : {candidate.firstName}</p>
                     <p> Last Name: {candidate.lastName}</p>
                     <p> Role : {candidate.role}</p>
@@ -288,3 +299,4 @@ const Dashboard =(props)=>{
 }
 
 export default Dashboard
+
