@@ -12,6 +12,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import SearchIcon from '@material-ui/icons/Search';
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import {useDispatch,useSelector} from 'react-redux'
+import {getProfiles} from '../Redux/actions/logActions'
 
 
 
@@ -37,7 +39,9 @@ const Dashboard =(props)=>{
     const [filter,setFilter] = useState("")
     const [search,setSearch] = useState("")
 
-    
+    const profiles2 = useSelector(state => state.profiles)
+
+    const dispatch = useDispatch()
    
     const classes = useStyles();
 
@@ -163,7 +167,9 @@ const Dashboard =(props)=>{
         setValue()
     },[filter])
 
-
+    useEffect(()=>{
+        dispatch(getProfiles())
+    },[dispatch])
 
     return(<div>
          <Header />

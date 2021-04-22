@@ -1,10 +1,12 @@
 import {combineReducers,createStore,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {logReducer} from '../reducers/logReducer'
+import {profilesReducer} from '../reducers/profileReducer'
 
 
 const root = {
-    log : logReducer
+    log : logReducer,
+    profiles : profilesReducer
 }
 
 const configureStore =()=>{

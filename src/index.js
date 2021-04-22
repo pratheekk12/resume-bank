@@ -9,6 +9,10 @@ import configureStore from './Redux/store/configureStore'
 
 const store = configureStore()
 
+  // if(localStorage.getItem('token')){
+  //   store.dispatch(getProfiles())
+  // }
+
 const ele =(
   <BrowserRouter>
   <Provider store={store}>
